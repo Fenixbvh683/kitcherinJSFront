@@ -46,6 +46,25 @@ window.onload = async function(e) {
         }
     });
 
+    $('address').addEventListener('blur', function(e){
+        switch (true) {
+            case !this.ariaValueMax.trim():
+                $('msgError-address').innerHTML = "El nombre es obligatorio";
+                this.classList.add("is-invalid");
+                break;
+            
+            case this.value.trim().length < 2 :
+                $('msgError-address').innerHTML = "Minimo dos caracteres";
+                this.classList.add("is-invalid");
+                break;
+            default:
+                $('msgError-address').innerHTML = null;
+                this.classList.remove("is-invalid");
+                this.classList.add("is-valid");
+                break;
+        }
+    });
+
     $('birthday').addEventListener('blur', function(e){
 
         const birthDate = moment(this.value);
